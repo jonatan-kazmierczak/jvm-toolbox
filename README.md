@@ -1,5 +1,5 @@
 # JVM Toolbox 2017 - Demo
-This is a demo of a polyglot JVM application built with Gradle (see gradle/gradle#1549).
+This is a demo of a polyglot JVM application built with Gradle (see https://github.com/gradle/gradle/issues/1549).
 
 It demonstrates the following functionalities:
 * calculation
