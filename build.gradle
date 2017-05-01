@@ -1,0 +1,19 @@
+// The order of compilation is always: Java, Groovy, Scala
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'scala'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.10:indy'
+    compile 'org.scala-lang:scala-library-all:2.12.1'
+    testCompile 'junit:junit:4.12'
+    // Add JSON-P (part of Java EE)
+    compile 'javax.json:javax.json-api:1.0'
+    runtime 'org.glassfish:javax.json:1.0.4'
+}
