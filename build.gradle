@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.10:indy'
-    compile 'org.scala-lang:scala-library-all:2.12.1'
+    compile 'org.codehaus.groovy:groovy-all:2.4.+:indy'
+    compile 'org.scala-lang:scala-library-all:2.12.+'
     testCompile 'junit:junit:4.12'
     // Add JSON-P (part of Java EE)
     compile 'javax.json:javax.json-api:1.0'
