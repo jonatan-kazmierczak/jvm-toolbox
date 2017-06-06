@@ -51,7 +51,6 @@ public class FunctionalitiesTest {
     private static String jsonFull;
     private static final String JSON_FULL_RESULT = "Afghanistan";
 
-//    private static final String LETTER_WORD = "Developer";
 
     private static ScriptEngine jse;
     private static SimpleBindings jseBindings;
@@ -75,7 +74,6 @@ public class FunctionalitiesTest {
         // Load JSON file (one liner)
         jsonFull = Files.newBufferedReader( Paths.get(
                 FunctionalitiesTest.class.getResource("countries.json").toURI() ) ).readLine();
-        //System.out.println("JSON length: " + jsonFull.length());
 
         jseBindings = new SimpleBindings() {{
             put("jsonFull", FunctionalitiesTest.jsonFull);
@@ -128,28 +126,24 @@ public class FunctionalitiesTest {
     public void multiply_int_dbl_1__Java() {
         BigDecimal result = JavaFunctionalities.multiply(4, 0.25);
         assertEquals( NUM_DOUBLE_MUL_RESULT, result );
-        //assertTrue( "1 expected", BigDecimal.ONE.compareTo( result ) == 0 );
     }
 
     @Test
     public void multiply_int_dbl_2__Scala() {
         BigDecimal result = ScalaFunctionalities.multiplyForJava( BigDecimal.valueOf(4), BigDecimal.valueOf(0.25) );
         assertEquals( NUM_DOUBLE_MUL_RESULT, result );
-        //assertTrue( "1 expected", BigDecimal.ONE.compareTo( result ) == 0 );
     }
 
     @Test
     public void multiply_int_dbl_3__Groovy() {
         BigDecimal result = GroovyFunctionalities.multiply(4, 0.25);
         assertEquals( BigDecimal.ONE, result );
-        //assertTrue( "1 expected", BigDecimal.ONE.compareTo( result ) == 0 );
     }
 
     @Test
     public void multiply_int_dbl_4__JS() throws ScriptException {
         Double result = (Double) jse.eval("multiply( 4, 0.25 )", jseBindings);
         assertEquals( Double.valueOf(1.0), result );
-        //assertTrue( "1 expected", 1.0 == result );
     }
 
     @Test
@@ -174,34 +168,12 @@ public class FunctionalitiesTest {
     @Test
     public void multiply_longs_4__JS() throws ScriptException {
         Double result = (Double) jse.eval("multiply( " + NUM_LONG + ", " + NUM_LONG + " )", jseBindings);
-        //assertTrue( NUM_LONG_MUL_RESULT.compareTo( BigDecimal.valueOf(result) ) == 0 );
         assertEquals( NUM_LONG_MUL_RESULT, BigDecimal.valueOf(result) );
     }
 
 
     // Processing countries JSON
-/*
-    @Test
-    public void countryNames_small__Scala() {
-        List<String> result = ScalaFunctionalities.countryNamesForJava(JSON_SAMPLE);
-        assertEquals( JSON_SAMPLE_RESULT, result.get(1) );
-    }
 
-    @Test
-    public void countryNames_small__Groovy() {
-        List<String> result = GroovyFunctionalities.countryNames(JSON_SAMPLE);
-        assertEquals( JSON_SAMPLE_RESULT, result.get(1) );
-    }
-
-    @Test
-    public void countryNames_small__JS() throws ScriptException {
-        //String script = "countryNamesForJava( '" + JSON_SAMPLE + "' )";
-        //System.out.println(script);
-        String[] result = (String[]) jse.eval("countryNamesForJava( '" + JSON_SAMPLE + "' )", jseBindings);
-        //System.out.println(Arrays.toString(result));
-        assertEquals( JSON_SAMPLE_RESULT, result[1] );
-    }
-*/
     @Test
     public void countryNames_full_1__Java_JSONP() {
         List<String> result = JavaFunctionalities.countryNames(jsonFull);
@@ -223,11 +195,7 @@ public class FunctionalitiesTest {
     @Test
     public void countryNames_full_4__JS() throws ScriptException {
         String script = "countryNamesForJava( jsonFull )";
-        //String script = "countryNamesForJava( '" + jsonFull + "' )";
-        //System.out.println(script);
         String[] result = (String[]) jse.eval(script, jseBindings);
-        //String[] result = (String[]) jse.eval(script);
-        //System.out.println(Arrays.toString(result));
         assertEquals( JSON_FULL_RESULT, result[0] );
     }
 
@@ -240,7 +208,6 @@ public class FunctionalitiesTest {
         String result = JavaFunctionalities.letter( createDataHolder(
                 "hero_name", heroName, "hero_color", "blue", "sender_name", "Java Developer") );
         assertTrue( result.contains( heroName ) );
-        //assertTrue( result.contains( LETTER_WORD ) );
     }
 
     @Test
